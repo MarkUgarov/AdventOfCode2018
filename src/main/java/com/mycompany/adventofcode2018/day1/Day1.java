@@ -5,6 +5,7 @@
  */
 package com.mycompany.adventofcode2018.day1;
 
+import com.mycompany.adventofcode2018.Day;
 import com.mycompany.adventofcode2018.TestDataReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author mark2d2
  */
-public class Day1 {
+public class Day1 implements Day{
     
     private static final String FILE_PATH = "TestDataDay1";
     private ArrayList<Integer> testData;
@@ -31,6 +32,7 @@ public class Day1 {
         }
     }
     
+    @Override
     public void printResults(){
         System.out.println("------------------------------------");
         System.out.println("DAY 1");
