@@ -38,6 +38,7 @@ public class Day3 implements Day{
         System.out.println("------------------------------------");
         System.out.println("DAY 3");
         System.out.println(this.getNumberOfOverlappedSquareInches(testData));
+        System.out.println(this.getRectangleIDWithoutOverlap(testData));
         System.out.println("------------------------------------");
         return;
     }
@@ -49,13 +50,33 @@ public class Day3 implements Day{
         }
     }
     
-    public int getNumberOfOverlappedSquareInches(ArrayList<String> data){
-        this.parse(data);
+    private void initFloor(){
         this.floor = new Floor();
         for (Rectangle r:this.rectangles){
             this.floor.addFabric(r);
         }
+    }
+    
+    public int getNumberOfOverlappedSquareInches(ArrayList<String> data){
+        this.parse(data);
+        this.initFloor();
         return floor.getOverlaps();
+    }
+    
+    public String getRectangleIDWithoutOverlap(ArrayList<String> data){
+        this.parse(data);
+        this.initFloor();
+        boolean found = false;
+        String ret = "NOTHING FOUND";
+        Rectangle current;
+        for (int i=0; !found && i<this.rectangles.size(); i++){
+            current = this.rectangles.get(i);
+            if(!current.hasOverlaps()){
+                found = true;
+                ret = ""+current.getID();
+            }
+        }
+        return ret;
     }
     
 }

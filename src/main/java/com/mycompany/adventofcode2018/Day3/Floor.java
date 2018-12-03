@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Floor {
     
-    private ArrayList<ArrayList<Integer>> describedFloor;
+    private ArrayList<ArrayList<SquareInch>> describedFloor;
     
     public Floor(){
         this.describedFloor = new ArrayList<>();
@@ -22,20 +22,20 @@ public class Floor {
     public void addFabric(Rectangle fabric){
         for (int i = fabric.getFromLeft(); i<fabric.getFromLeft()+fabric.getWidth(); i++){
             for (int j = fabric.getFromTop(); j<fabric.getFromTop()+fabric.getHight(); j++){
-                this.addToFloor(i, j);
+                this.addToFloor(i, j, fabric);
             }
         }
     }
     
-    public void addToFloor(int x, int y){
+    public void addToFloor(int x, int y, Rectangle r){
         while(x>=this.describedFloor.size()){
-            this.describedFloor.add(new ArrayList<Integer>());
+            this.describedFloor.add(new ArrayList<SquareInch>());
         }
-        ArrayList<Integer> yAxe = this.describedFloor.get(x);
+        ArrayList<SquareInch> yAxe = this.describedFloor.get(x);
         while (y>=yAxe.size()){
-            yAxe.add(0);
+            yAxe.add(new SquareInch());
         }
-        yAxe.set(y, yAxe.get(y)+1);
+        yAxe.get(y).addOverlap(r);
     }
     
     public int getOverlaps(){
@@ -43,12 +43,12 @@ public class Floor {
             return 0;
         }
         int overlaps = 0;
-        for (ArrayList<Integer> arrList: this.describedFloor){
-            for (int i:arrList){
-                if (i > 1){
+        for (ArrayList<SquareInch> arrList: this.describedFloor){
+            for (SquareInch i:arrList){
+                if (i.getOverlaps() > 1){
                     overlaps++;
                 }
-                System.out.print(i);
+                //System.out.print(i);
             }
             //System.out.println("");
         }

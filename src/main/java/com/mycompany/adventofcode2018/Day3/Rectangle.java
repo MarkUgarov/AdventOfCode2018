@@ -5,6 +5,8 @@
  */
 package com.mycompany.adventofcode2018.Day3;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mark2d2
@@ -53,6 +55,8 @@ public class Rectangle {
     private int width;
     private int hight;
     
+    private ArrayList<Rectangle> overlapsWith;
+    
     public Rectangle(String line){
         String[] args = line.split("\\s+");
         String id = args[0].replace("#", "");
@@ -67,6 +71,7 @@ public class Rectangle {
         this.width = this.parseInt(dimensions[0]);
         this.hight = this.parseInt(dimensions[1]);
         
+        this.overlapsWith = new ArrayList<>();
         
     }
     
@@ -83,5 +88,13 @@ public class Rectangle {
         String ret = (getID()+": "+ getFromLeft()+","+getFromTop()+" = "+getWidth()+ "x"+getHight());
         System.out.println(ret);
         return ret;
+    }
+    
+    public void addOverlapWith(Rectangle r){
+        this.overlapsWith.add(r);
+    }
+    
+    public boolean hasOverlaps(){
+        return (this.overlapsWith.size() > 0);
     }
 }
