@@ -5,7 +5,7 @@
  */
 package com.mycompany.adventofcode2018;
 
-import com.mycompany.adventofcode2018.Day3.Day3;
+import com.mycompany.adventofcode2018.day3.Day3;
 import com.mycompany.adventofcode2018.day1.Day1;
 import com.mycompany.adventofcode2018.day2.Day2;
 
