@@ -46,6 +46,10 @@ public class PointOfTime implements Comparable<PointOfTime>{
         return formatter.format(this.date);
     }
     
+    public Date getDate(){
+        return this.date;
+    }
+    
     public String getMessage(){
         return this.message;
     }

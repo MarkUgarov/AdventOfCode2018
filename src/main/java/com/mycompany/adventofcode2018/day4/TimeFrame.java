@@ -6,6 +6,7 @@
 package com.mycompany.adventofcode2018.day4;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -16,8 +17,12 @@ public class TimeFrame {
     private Date start;
     private Date end;
     
-    private TimeFrame(Date start){
+    public TimeFrame(Date start){
         this.start = start;
+    }
+    
+    public TimeFrame(PointOfTime startPoint){
+        this.start = startPoint.getDate();
     }
     
      /**
@@ -33,6 +38,10 @@ public class TimeFrame {
     public void setStart(Date start) {
         this.start = start;
     }
+    
+    public void setStart(PointOfTime event){
+        this.start = event.getDate();
+    }
 
     /**
      * @return the end
@@ -47,6 +56,20 @@ public class TimeFrame {
     public void setEnd(Date end) {
         this.end = end;
     }
+    
+    public void setEnd(PointOfTime event){
+        this.end = event.getDate();
+    }
+    
+    public long getDurationInMinutes(){
+        long durationMillisec = 0;
+        if (this.start != null && this.end != null){
+            durationMillisec = this.end.getTime() - this.start.getTime();
+            
+        }
+        return TimeUnit.MILLISECONDS.toMinutes(durationMillisec);
+    }
+
     
     
 }
