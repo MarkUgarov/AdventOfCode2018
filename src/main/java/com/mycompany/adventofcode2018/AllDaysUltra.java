@@ -9,6 +9,7 @@ import com.mycompany.adventofcode2018.day3.Day3;
 import com.mycompany.adventofcode2018.day1.Day1;
 import com.mycompany.adventofcode2018.day2.Day2;
 import com.mycompany.adventofcode2018.day4.Day4;
+import com.mycompany.adventofcode2018.day5.Day5;
 
 /**
  *
@@ -25,7 +26,8 @@ public class AllDaysUltra {
         day3.printResults();
         Day4 day4 = new Day4();
         day4.printResults();
-        
+        Day5 day5 = new Day5();
+        day5.printResults();
         
         System.exit(0);
     }
