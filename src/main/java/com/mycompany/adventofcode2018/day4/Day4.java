@@ -8,13 +8,9 @@ package com.mycompany.adventofcode2018.day4;
 import com.mycompany.adventofcode2018.Day;
 import com.mycompany.adventofcode2018.TestDataReader;
 import com.mycompany.adventofcode2018.day1.Day1;
-import com.mycompany.adventofcode2018.day3.Floor;
-import com.mycompany.adventofcode2018.day3.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

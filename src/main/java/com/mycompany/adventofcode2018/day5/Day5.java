@@ -8,8 +8,6 @@ package com.mycompany.adventofcode2018.day5;
 import com.mycompany.adventofcode2018.Day;
 import com.mycompany.adventofcode2018.TestDataReader;
 import com.mycompany.adventofcode2018.day1.Day1;
-import com.mycompany.adventofcode2018.day4.Guard;
-import com.mycompany.adventofcode2018.day4.PointOfTime;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
