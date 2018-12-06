@@ -37,6 +37,7 @@ public class Day6 implements Day{
     public void printResults() {
         System.out.println("------------------------------------");
         System.out.println("DAY 6");
+        System.out.println(this.getBiggestArea(testData));
         System.out.println("------------------------------------");
         return;
     }
@@ -50,7 +51,11 @@ public class Day6 implements Day{
                 this.floor.addMajorToFloor(vals[0], vals[1]);  
             }   
         }
-        this.floor.println();
+        this.floor.fillToMaxValues();
+        //this.floor.println();
+        System.out.println("_");
+        this.floor.findChildren();
+        //this.floor.println();
         
     }
     
@@ -64,13 +69,11 @@ public class Day6 implements Day{
             Integer.parseInt(vals[0]),
             Integer.parseInt(vals[1])
         };
-        
-        
     }
     
     public int getBiggestArea(ArrayList<String> data){
         this.parse(data);
-        return 0;
+        return this.floor.getBiggestMajorArea();
     }
     
     

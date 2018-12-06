@@ -11,10 +11,10 @@ package com.mycompany.adventofcode2018.day6;
  */
 public class Tile {
     
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private MajorTile major;
-    private int distanceToMajor;
+    private int distanceToMajor; // can be the distance to the LAST major has been set to null
     
     public Tile(int x, int y){
         this.x =x;
@@ -29,12 +29,13 @@ public class Tile {
     public void setMajor(MajorTile mt){
         if (this.major != null){
             this.major.removeChild(this);
+            
         }
         this.major = mt;
-        if (this.major != null){
-            this.major.addToChildren(this);
-        }
-        this.distanceToMajor = this.getManhattenDistanceTo(this.major);
+        if (mt != null){
+            mt.addToChildren(this);
+            this.distanceToMajor = this.getManhattenDistanceTo(mt);   
+        }//else: do not change distanceToMajor!
     }
     
     public MajorTile belongsTo(){
@@ -50,15 +51,23 @@ public class Tile {
     }
     
     public int getManhattenDistanceTo(Tile t){
-        if (this.major == null || t == null){
+        if (t == null){
             return Integer.MAX_VALUE;
         }
-        return Math.abs((this.x - t.getX())+(this.y-t.getY()));
+        return (Math.abs(this.x - t.getX())+Math.abs(this.y-t.getY()));
     }
     
-    public int getDistanceToCurrentMajor(){
+    public int getDistanceToCurrentOrLastMajor(){
         return this.distanceToMajor;
     }
     
+    public boolean isInfinite(int maxX, int maxY){
+        return (this.x == 0 || this.y == 0 || 
+                this.x == maxX || this.y == maxY);
+    }
+    
+    public MajorTile getMajorTile(){
+        return this.major;
+    }
     
 }

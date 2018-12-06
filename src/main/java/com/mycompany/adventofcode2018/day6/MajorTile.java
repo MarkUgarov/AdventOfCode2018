@@ -19,7 +19,7 @@ public class MajorTile extends Tile{
     public MajorTile(int x, int y) {
         super(x, y);
         this.children = new ArrayList<>();
-        this.children.add(this);
+        //this.children.add(this);
         this.infinitive = false;
         super.setMajor(this);
     }
@@ -29,8 +29,16 @@ public class MajorTile extends Tile{
         return true;
     }
     
+    @Override
+    public void setMajor(MajorTile mt){
+        // do nothing
+    }
+    
     public void addToChildren(Tile tile){
-        this.children.add(tile);
+        if (!tile.isMajor()){
+            this.children.add(tile);
+        }
+        
     }
     
     public void removeChild(Tile tile){
@@ -43,12 +51,27 @@ public class MajorTile extends Tile{
             return -1;
         }
         else {
-            return this.children.size();
+            return this.children.size()+1;
         }
     }
     
     @Override
-    public int getDistanceToCurrentMajor(){
+    public int getDistanceToCurrentOrLastMajor(){
         return 0;
+    }
+    
+    @Override
+    public boolean isInfinite(int maxX, int maxY){
+        boolean infinite = super.isInfinite(maxX, maxY);
+        int i = 0;
+        while(!infinite && i<this.children.size()){
+            infinite = this.children.get(i).isInfinite(maxX, maxY);
+            i++;
+        }
+        return infinite;
+    }
+    
+    public int getArea(int maxX, int maxY){
+        return (this.isInfinite(maxX, maxY)) ? -1 : this.children.size();
     }
 }
