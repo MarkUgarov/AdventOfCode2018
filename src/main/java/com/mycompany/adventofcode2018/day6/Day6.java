@@ -38,6 +38,7 @@ public class Day6 implements Day{
         System.out.println("------------------------------------");
         System.out.println("DAY 6");
         System.out.println(this.getBiggestArea(testData));
+        System.out.println(this.getRegionWithLowerDistanceToAllMajorsThan(testData, 10000));
         System.out.println("------------------------------------");
         return;
     }
@@ -53,7 +54,6 @@ public class Day6 implements Day{
         }
         this.floor.fillToMaxValues();
         //this.floor.println();
-        System.out.println("_");
         this.floor.findChildren();
         //this.floor.println();
         
@@ -74,5 +74,10 @@ public class Day6 implements Day{
     public int getBiggestArea(ArrayList<String> data){
         this.parse(data);
         return this.floor.getBiggestMajorArea();
+    }
+    
+    public int getRegionWithLowerDistanceToAllMajorsThan(ArrayList<String> data, int maxDistanceCeiling){
+        this.parse(data);
+        return this.floor.getRegionWithLowerDistanceToAllMajorsThan(maxDistanceCeiling);
     }
 }

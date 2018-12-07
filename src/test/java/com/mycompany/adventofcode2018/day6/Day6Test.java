@@ -37,5 +37,26 @@ public class Day6Test {
         int result = instance.getBiggestArea(data);
         assertEquals(expResult, result);
     }
+
+
+    /**
+     * Test of getRegionWithLowerDistanceToAllMajorsThan method, of class Day6.
+     */
+    @Test
+    public void testGetRegionWithLowerDistanceToAllMajorsThan() {
+        System.out.println("getRegionWithLowerDistanceToAllMajorsThan");
+        ArrayList<String> data = new ArrayList<>();
+        data.add("1, 1");
+        data.add("1, 6");
+        data.add("8, 3");
+        data.add("3, 4");
+        data.add("5, 5");
+        data.add("8, 9");
+        int maxDistanceSum = 32;
+        Day6 instance = new Day6();
+        int expResult = 16;
+        int result = instance.getRegionWithLowerDistanceToAllMajorsThan(data, maxDistanceSum);
+        assertEquals(expResult, result);
+    }
     
 }

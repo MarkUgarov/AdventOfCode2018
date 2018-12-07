@@ -118,6 +118,23 @@ public class Floor {
         return maxVal;    
         //8641 is to high!
     }
+    
+    public int getRegionWithLowerDistanceToAllMajorsThan(int maxDistanceCeiling){
+        ArrayList<Tile> found = new ArrayList<>();
+        int distanceSum;
+        for(ArrayList<Tile> at:this.content){
+            for (Tile t:at){
+                distanceSum = 0;
+                for (MajorTile mt:this.majorTiles){
+                    distanceSum += t.getManhattenDistanceTo(mt);
+                }
+                if (distanceSum < maxDistanceCeiling){
+                    found.add(t);
+                }
+            }
+        }
+        return found.size();
+    }
 
    
     
