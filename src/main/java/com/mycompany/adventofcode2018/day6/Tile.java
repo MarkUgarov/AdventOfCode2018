@@ -63,7 +63,7 @@ public class Tile {
 
     public boolean isInfinite(int maxX, int maxY){
         return (this.x == 0 || this.y == 0 || 
-                this.x == maxX || this.y == maxY);
+                this.x >= maxX || this.y >= maxY);
     }
 
     public MajorTile getMajorTile(){

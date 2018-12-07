@@ -107,7 +107,7 @@ public class Floor {
         int currVal;
         MajorTile currMax;
         for(MajorTile mj:this.majorTiles){
-            currVal = mj.getArea();
+            currVal = mj.getArea(this.xDim, this.yDim);
             if(currVal > maxVal){
                 maxVal = currVal;
                 currMax=mj;

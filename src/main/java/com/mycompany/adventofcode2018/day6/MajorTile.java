@@ -14,13 +14,12 @@ import java.util.ArrayList;
 public class MajorTile extends Tile{
     
     private ArrayList<Tile> children;
-    private boolean infinitive;
     
     public MajorTile(int x, int y) {
         super(x, y);
         this.children = new ArrayList<>();
         //this.children.add(this);
-        this.infinitive = false;
+        
         super.setMajor(this);
     }
     
@@ -56,14 +55,6 @@ public class MajorTile extends Tile{
     }
     
     
-    public int getArea(){
-        if (this.infinitive){
-            return -1;
-        }
-        else {
-            return this.children.size()+1;
-        }
-    }
     
     @Override
     public int getDistanceToCurrentOrLastMajor(){
@@ -82,7 +73,7 @@ public class MajorTile extends Tile{
     }
     
     public int getArea(int maxX, int maxY){
-        return (this.isInfinite(maxX, maxY)) ? -1 : this.children.size();
+        return (this.isInfinite(maxX, maxY)) ? -1 : this.children.size()+1;
     }
     
     @Override
