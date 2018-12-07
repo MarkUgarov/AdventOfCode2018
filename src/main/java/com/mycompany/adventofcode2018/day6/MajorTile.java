@@ -42,7 +42,17 @@ public class MajorTile extends Tile{
     }
     
     public void removeChild(Tile tile){
-        this.children.remove(tile);
+        Tile currChild;
+        int i = 0;
+        while(i<this.children.size()){
+            currChild = this.children.get(i);
+            if (currChild.getX() == tile.getX() && currChild.getY() == tile.getY()){
+                this.children.remove(i);
+            } 
+            else{
+                i++;
+            }
+        }
     }
     
     
@@ -73,5 +83,25 @@ public class MajorTile extends Tile{
     
     public int getArea(int maxX, int maxY){
         return (this.isInfinite(maxX, maxY)) ? -1 : this.children.size();
+    }
+    
+    @Override
+    public String getGenericName(){
+        return  ""
+                + Character.toUpperCase(this.getCharForNum(this.getMajorTile().getX()))
+                + ""
+                + Character.toUpperCase(this.getCharForNum(this.getMajorTile().getY()));
+
+    }
+
+
+    private char getCharForNum(int a){
+        String alphabet = "abcdefghijklmnopqrstuvwxy";
+        if (a>=alphabet.length()){
+            return 'z';
+        }
+        else {
+            return alphabet.charAt(a);
+        }
     }
 }

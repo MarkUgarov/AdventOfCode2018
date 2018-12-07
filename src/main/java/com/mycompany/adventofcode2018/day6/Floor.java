@@ -34,8 +34,10 @@ public class Floor {
             this.content.add(new ArrayList<Tile>());
         }
         ArrayList<Tile> yAxe = this.content.get(x);
+        int j = yAxe.size();
         while (y>=yAxe.size()){
-            yAxe.add(new Tile(x,y));
+            yAxe.add(new Tile(x,j));
+            j++;
         }
         yAxe.set(y, mj);
         this.majorTiles.add(mj);
@@ -43,13 +45,10 @@ public class Floor {
     
     public void fillToMaxValues(){
         ArrayList<Tile> yAxis;
-        int j;
         for(int i = 0; i<this.content.size();i++){
             yAxis = this.content.get(i);
-            j = 0;
             while(yAxis.size() <= this.yDim){
-                yAxis.add(new Tile(i,j));
-                j++;
+                yAxis.add(new Tile(i,yAxis.size()));
             }
         }
     }
@@ -65,24 +64,12 @@ public class Floor {
                         candidateDistance = t.getManhattenDistanceTo(mt);
                         if(currentMajorDistance > candidateDistance){
                             t.setMajor(mt);
-    //                        System.out.println(" "+currentMajorDistance +" > "+candidateDistance);
                             currentMajorDistance = t.getDistanceToCurrentOrLastMajor();
 
                         }
                         else if (currentMajorDistance == candidateDistance){
                             t.setMajor(null);
                             currentMajorDistance = t.getDistanceToCurrentOrLastMajor();
-    //                        System.out.println("Found " 
-    //                                + candidateDistance
-    //                                +": "
-    //                                +(this.getCharForNum(t.getX()))
-    //                                + ""
-    //                                + this.getCharForNum(t.getY())
-    //                                + " and "
-    //                                +(this.getCharForNum(mt.getX()))
-    //                                + ""
-    //                                + this.getCharForNum(mt.getY())
-    //                        );
 
                         }
                         // else: do nothing
@@ -97,24 +84,9 @@ public class Floor {
     public void println(){
         for (ArrayList<Tile> at:this.content){
             for (Tile t: at){
-                if (t == null){
-                    System.out.print("  ");
-                }
-                else if(t.isMajor()){
-                    System.out.print(Character.toUpperCase(this.getCharForNum(t.getX())) 
-                            + ""
-                            + Character.toUpperCase(this.getCharForNum(t.getY())));
-                }
-                else {
-                    if (t.getMajorTile() == null){
-                        System.out.print("..");
-                    }
-                    else{
-                        System.out.print(this.getCharForNum(t.getMajorTile().getX())
-                                + ""
-                                + this.getCharForNum(t.getMajorTile().getY()));
-                    }
-                }
+                System.out.print(t.getGenericName()
+                        //+ String.format("%1$2s", ""+t.getDistanceToCurrentOrLastMajor())
+                        +"|");
             }
             System.out.println();
         }
@@ -132,11 +104,19 @@ public class Floor {
     
     public int getBiggestMajorArea(){
         int maxVal = 0;
+        int currVal;
+        MajorTile currMax;
         for(MajorTile mj:this.majorTiles){
-            maxVal = Math.max(mj.getArea(this.xDim, this.yDim), maxVal);
+            currVal = mj.getArea();
+            if(currVal > maxVal){
+                maxVal = currVal;
+                currMax=mj;
+                        
+            }
+            //maxVal = Math.max(mj.getArea(this.xDim, this.yDim), maxVal);
         }
-        return maxVal;
-        
+        return maxVal;    
+        //8641 is to high!
     }
 
    

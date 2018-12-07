@@ -75,6 +75,4 @@ public class Day6 implements Day{
         this.parse(data);
         return this.floor.getBiggestMajorArea();
     }
-    
-    
 }
