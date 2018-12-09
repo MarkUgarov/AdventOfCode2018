@@ -38,6 +38,7 @@ public class Day7 implements Day{
         System.out.println("------------------------------------");
         System.out.println("DAY 7");
         System.out.println(this.getOrder(testData));
+        System.out.println(this.getRequiredTime(testData, 4));
         System.out.println("------------------------------------");
         return;
     }
@@ -85,17 +86,10 @@ public class Day7 implements Day{
         return ret;
     }
     
-    public String getOrder(ArrayList<String> data){
-        this.parse(data);
-        
-        ArrayList<Node> nodeSeq = new ArrayList<>();
-        for (Node n: this.getStartingNodes()){
-            System.out.print(n.getName());
-        }
-        System.out.println();
-        
+    private ArrayList<Node> generateNodeOrder(){
         boolean done = false;
         Node current;
+        ArrayList<Node> nodeSeq = new ArrayList<>();
         while (!done) {
             done  = true;
             for (int i = 0; i<this.nodes.size() && done; i++){
@@ -107,24 +101,31 @@ public class Day7 implements Day{
                 }
             }
         }
-        
-        
-//        System.out.println();
-//        for (Node n:this.getStartingNodes()){
-//            n.getOrder(nodeSeq);
-//        }
-        StringBuilder sequence = new StringBuilder();
-        
-        
+        return nodeSeq;
+    }
+    
+    public String getOrder(ArrayList<String> data){
+        this.parse(data);
+        ArrayList<Node> nodeSeq = this.generateNodeOrder();
+        StringBuilder sequence = new StringBuilder(); 
         for (Node n:nodeSeq){
             sequence.append(n.getName());
         }
-        
         return sequence.toString();
-        
-        //not GLXMVWZDKOUCEJRHFAPITSBQNY
-//            GLMVWXZDKOUCEJRHFAPITSBQNY
     }
+    
+    public int getRequiredTime(ArrayList<String> data, int numberOfWorkers){
+        this.parse(data);
+        ArrayList<Node> nodeSeq = this.generateNodeOrder();
+        for (Node n:nodeSeq){
+            n.setUndone();
+        }
+        Supervisor supervisor = new Supervisor(numberOfWorkers);
+        supervisor.work(nodeSeq);
+
+        return supervisor.getTimeWorked();
+    }
+    
     
     
     

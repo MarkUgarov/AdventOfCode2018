@@ -27,8 +27,7 @@ public class Day7Test {
         System.out.println("getOrder");
         ArrayList<String> data = new ArrayList<>();
         data.add("Step B must be finished before step E can begin.");
-        data.add("Step D must be finished before step E can begin.");
-       
+        data.add("Step D must be finished before step E can begin.");      
         data.add("Step A must be finished before step B can begin.");
         data.add("Step A must be finished before step D can begin.");
         data.add("Step C must be finished before step A can begin.");
@@ -39,5 +38,29 @@ public class Day7Test {
         String result = instance.getOrder(data);
         assertEquals(expResult, result);
     }
+
+ 
+    /**
+     * Test of getRequiredTime method, of class Day7.
+     */
+    @Test
+    public void testGetRequiredTime() {
+        System.out.println("getRequiredTime");
+        ArrayList<String> data = new ArrayList<>();
+        data.add("Step B must be finished before step E can begin.");
+        data.add("Step D must be finished before step E can begin.");       
+        data.add("Step A must be finished before step B can begin.");
+        data.add("Step A must be finished before step D can begin.");
+        data.add("Step C must be finished before step A can begin.");
+        data.add("Step C must be finished before step F can begin.");
+        data.add("Step F must be finished before step E can begin.");
+        int numberOfWorkers = 2;
+        Day7 instance = new Day7();
+        int expResult = 258;
+        int result = instance.getRequiredTime(data, numberOfWorkers);
+        assertEquals(expResult, result);
+    }
+
+    
     
 }
