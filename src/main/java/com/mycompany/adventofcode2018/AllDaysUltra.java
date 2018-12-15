@@ -7,11 +7,13 @@ package com.mycompany.adventofcode2018;
 
 import com.mycompany.adventofcode2018.day3.Day3;
 import com.mycompany.adventofcode2018.day1.Day1;
+import com.mycompany.adventofcode2018.day15.Day15;
 import com.mycompany.adventofcode2018.day2.Day2;
 import com.mycompany.adventofcode2018.day4.Day4;
 import com.mycompany.adventofcode2018.day5.Day5;
 import com.mycompany.adventofcode2018.day6.Day6;
 import com.mycompany.adventofcode2018.day7.Day7;
+import com.mycompany.adventofcode2018.day9.Day9;
 
 /**
  *
@@ -32,8 +34,12 @@ public class AllDaysUltra {
 //        day5.printResults();
 //        Day6 day6 = new Day6();
 //        day6.printResults();
-        Day7 day7 = new Day7();
-        day7.printResults();
+//        Day7 day7 = new Day7();
+//        day7.printResults();
+//        Day9 day9 = new Day9();
+//        day9.printResults();
+        Day15 day15 = new Day15();
+        day15.printResults();
         System.exit(0);
     }
     
